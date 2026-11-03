@@ -1,0 +1,5 @@
+model_id,model_type,parameters,references,regeneration_status
+ASM-100,assembly,MATERIAL=STEEL;REV=A,PRT-200;PRT-300,OK
+PRT-200,part,MATERIAL=STEEL;REV=A,,OK
+PRT-300,part,REV=B,PRT-999,FAILED
+PRT-400,part,MATERIAL=ALUMINUM;REV=A,,WARNING
