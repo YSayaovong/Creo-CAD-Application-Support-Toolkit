@@ -43,6 +43,7 @@ These records demonstrate how the validation process distinguishes normal model 
 ## Repository structure
 
 ```text
+main.py                   Runnable entry point for CSV diagnostics
 data/cad_models.csv       Synthetic CAD metadata input
 src/diagnose.py           CSV validation and diagnostic rules
 tests/test_diagnose.py    Automated validation tests
@@ -54,9 +55,23 @@ README.md                 Project documentation
 
 ```bash
 python -m pip install -r requirements.txt
-python src/diagnose.py --input data/cad_models.csv --output reports/cad_diagnostics.json
-pytest -q
+python main.py
+python -m pytest -q
 ```
+
+`python main.py` prints the diagnostic findings and writes `reports/cad_diagnostics.json` using the bundled sample dataset. It can be launched from a different working directory because its default file paths are relative to the repository location, not the terminal's current folder. You can supply your own input and output paths:
+
+```bash
+python main.py --input data/cad_models.csv --output reports/custom_report.json
+```
+
+The original script also remains available:
+
+```bash
+python src/diagnose.py --input data/cad_models.csv --output reports/cad_diagnostics.json
+```
+
+**Run the application with `main.py`; run the automated test suite with pytest.** Do not execute `tests/test_diagnose.py` in a standalone Python editor as if it were the application.
 
 Expected input columns:
 
