@@ -1,26 +1,39 @@
 # Creo CAD Application Support Toolkit
 
-Offline diagnostics for **synthetic Creo-like model metadata exports**. Demonstrates how a CAD application support specialist can triage missing parameters, unresolved references, regeneration failures, and warnings.
+**Engineering systems support | Technical triage | CAD metadata validation**
 
-## Features
-- Validates CSV input schema and duplicate model IDs
-- Checks required `MATERIAL` and `REV` parameters
-- Flags unresolved model references
-- Flags failed or warning regeneration status
-- Writes a JSON report with suggested investigation steps
-- Includes automated tests and synthetic sample data
+A Python **offline simulator** that analyzes synthetic Creo-like model metadata exports. It demonstrates structured troubleshooting of engineering application issues without requiring Creo installation or access to company systems.
 
-## Run
+## Support scenario
+An engineering application support analyst receives model metadata indicating missing parameters, broken references or regeneration warnings. The analyst needs a consistent triage report and investigation checklist.
+
+## Implemented checks
+- Input schema and duplicate model IDs
+- Required `MATERIAL` and `REV` parameters
+- References to model IDs absent from the provided export
+- Regeneration states: `OK`, `WARNING`, `FAILED`
+- JSON report with suggested next investigation steps
+- Automated tests and synthetic sample data
+
+## Run the demonstration
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 python src/diagnose.py --input data/cad_models.csv --output reports/cad_diagnostics.json
 pytest -q
 ```
 
-## Input schema
-`model_id,model_type,parameters,references,regeneration_status`
+## Input contract
+```text
+model_id,model_type,parameters,references,regeneration_status
+```
+Parameters use semicolon-separated `KEY=VALUE` pairs; references are semicolon-separated model IDs.
 
-Parameters use semicolon-separated `KEY=VALUE` pairs. References are semicolon-separated model IDs. Regeneration status is `OK`, `WARNING`, or `FAILED`.
+## How to interpret the report
+Treat findings as **triage leads**, not confirmed root causes. For example, a missing referenced model might indicate an incomplete export rather than a broken assembly. A real support investigation would confirm the issue in an authorized engineering environment and document the resolution.
 
-## Important scope limitations
-This is a **portfolio simulator**, not a Creo Parametric plugin. It does **not** read Creo native files, execute Creo regeneration, call Creo APIs, connect to Windchill/SAP/TDMS, or diagnose live workplace models. Missing references may reflect an incomplete CSV export, not a broken CAD assembly. The sample is synthetic and contains no employer data.
+## Boundaries
+**Not a Creo plugin.** The tool does not read native Creo files, invoke regeneration, call Creo APIs, access Windchill/SAP/TDMS or diagnose live production models. All inputs are synthetic and contain no employer data.
+
+**Relevant roles:** Engineering Systems Support Analyst, CAD Application Support Analyst, PLM Support Analyst.
+
+[Related engineering change tracker](https://github.com/YSayaovong/Engineering-Change-Revision-Tracker) · [Portfolio website repository](https://github.com/YSayaovong/operations-analytics-portfolio)
