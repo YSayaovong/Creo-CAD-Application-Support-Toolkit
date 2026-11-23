@@ -104,6 +104,10 @@ The existing validation rules provide a foundation for additional configuration-
 
 These capabilities are proposed extensions and are not included in the current implementation.
 
+## Support case study
+
+[Incorrect drawing reference in a BOM](case-studies/bom-drawing-reference/README.md) shows how to diagnose and verify a drawing reference correction using fictional CSV exports.
+
 ## Related project
 
 [Engineering Change & Revision Tracker](https://github.com/YSayaovong/Engineering-Change-Revision-Tracker)

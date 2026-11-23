@@ -1,0 +1,4 @@
+item,part_number,description,quantity,drawing_reference
+1,PT-210,Bracket,2,DWG-210
+2,PT-220,Spacer,4,DWG-220
+3,PT-230,Base plate,1,DWG-230
